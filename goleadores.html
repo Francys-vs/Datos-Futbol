@@ -30,7 +30,16 @@
                 console.log(data);
                 const marcador = document.querySelector("#goleadores");
                 data.forEach((d)=>{
-                    marcador.innerHTML += `<div><p><img src="${d.fotos}"> ${d.chileno}:${goldechile(d.goles)}</p></div>`
+                    marcador.innerHTML += `<div>
+                      <p>
+                        <img src="${d.foto}"> 
+                        ${d.chileno} :
+                        ${goldechile(d.goles)} :
+                        ${partidos(d.partidos)} :
+                        ${estadoJugador(d.estado)} :
+                        ${añosActivo(d["años activo"])}
+                      </p>
+                </div>`;
                 })
                 
             }
@@ -42,6 +51,33 @@
                     pelotitas += "⚽ "
                 }
                 return pelotitas;
+            }
+
+            function partidos(p){
+                var estadios = "";
+                for(var y = 0; y < p; y++){
+                    estadios += "🏟️ "
+                }
+                return estadios;
+            }
+
+            function estadoJugador(e){
+                if(e == "activo"){
+                    return "¿Activo?: 🏃"
+                } else if (e == "retirado"){
+                    return "¿Activo?: 🧓"
+                }
+            }
+
+            function añosActivo(a){
+                if(a == null){
+                    return "🧍"
+                } else {
+                    const inicio = a[0];
+                    const fin = a[1];
+                    const años = fin - inicio;
+                    return `Años activo: ${años} 🏅`
+                }
             }
         </script>
     </body>
